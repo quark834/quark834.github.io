@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>漫画在线-漫画在线免费阅读_热门漫画在线阅读平台</title>
+<meta name="description" content="漫画在线提供热门漫画免费在线阅读，涵盖热血、恋爱、悬疑、奇幻等多类型作品，支持手机与电脑随时看漫画，连载更新清晰可查。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%231a1a2e'/%3E%3Cpath d='M16 18h26a6 6 0 0 1 6 6v22H22a6 6 0 0 1-6-6z' fill='%23ff6b6b'/%3E%3Ccircle cx='27' cy='30' r='3' fill='%23fff'/%3E%3Ccircle cx='38' cy='30' r='3' fill='%23fff'/%3E%3Cpath d='M26 39c4 3 8 3 12 0' stroke='%23fff' stroke-width='2.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E">
+<style>
+:root{
+  --ink:#1a1a2e;
+  --ink-2:#2d2d44;
+  --accent:#ff5c5c;
+  --accent-2:#ffb03a;
+  --paper:#f7f5f1;
+  --card:#ffffff;
+  --muted:#6b6a76;
+  --line:#e6e2da;
+  --radius:16px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,-apple-system,sans-serif;
+  background:var(--paper);
+  color:var(--ink);
+  line-height:1.75;
+  -webkit-font-smoothing:antialiased;
+}
+img,svg{display:block}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1120px;margin:0 auto;padding:0 22px}
+
+/* ---------- header ---------- */
+header{
+  position:sticky;top:0;z-index:50;
+  background:rgba(247,245,241,.92);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.nav{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:18px;height:66px;
+}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:19px;letter-spacing:.5px;white-space:nowrap}
+.brand .mark{
+  width:36px;height:36px;border-radius:10px;flex:none;
+  background:linear-gradient(140deg,var(--accent),var(--accent-2));
+  display:grid;place-items:center;
+}
+.brand .mark svg{width:22px;height:22px}
+nav.links{display:flex;gap:26px;font-size:15px;color:var(--ink-2)}
+nav.links a{padding:4px 0;border-bottom:2px solid transparent;transition:.2s}
+nav.links a:hover{color:var(--accent);border-color:var(--accent)}
+.nav-cta{
+  display:inline-flex;align-items:center;gap:6px;
+  background:var(--ink);color:#fff;font-size:14px;font-weight:600;
+  padding:9px 18px;border-radius:999px;white-space:nowrap;transition:.2s;
+}
+.nav-cta:hover{background:var(--accent)}
+@media(max-width:760px){
+  nav.links{display:none}
+  .nav{height:60px}
+}
+
+/* ---------- hero ---------- */
+.hero{
+  position:relative;overflow:hidden;
+  padding:64px 0 58px;
+  background:
+    radial-gradient(circle at 88% 12%, rgba(255,176,58,.20), transparent 42%),
+    radial-gradient(circle at 6% 88%, rgba(255,92,92,.14), transparent 46%);
+}
+.hero-grid{
+  display:grid;grid-template-columns:1.15fr .85fr;gap:48px;align-items:center;
+}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:13px;font-weight:700;color:var(--accent);
+  background:#fff;border:1px solid var(--line);
+  padding:5px 14px;border-radius:999px;margin-bottom:20px;
+}
+.eyebrow i{width:7px;height:7px;border-radius:50%;background:var(--accent);display:block}
+h1{
+  font-size:clamp(30px,4.6vw,50px);
+  line-height:1.22;font-weight:900;letter-spacing:-.5px;
+  margin-bottom:18px;
+}
+h1 em{font-style:normal;color:var(--accent)}
+.hero p.lead{
+  font-size:16px;color:var(--muted);max-width:30em;margin-bottom:28px;
+}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:26px}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:15px;font-weight:700;padding:13px 26px;border-radius:999px;
+  transition:.2s;border:1.5px solid transparent;cursor:pointer;
+}
+.btn-primary{background:var(--accent);color:#fff;box-shadow:0 10px 24px -12px rgba(255,92,92,.9)}
+.btn-primary:hover{background:#e94a4a;transform:translateY(-1px)}
+.btn-ghost{background:#fff;color:var(--ink);border-color:var(--line)}
+.btn-ghost:hover{border-color:var(--ink)}
+.hero-stats{display:flex;gap:28px;flex-wrap:wrap;font-size:13px;color:var(--muted)}
+.hero-stats b{display:block;font-size:20px;color:var(--ink);font-weight:800}
+
+/* hero art */
+.hero-art{
+  position:relative;border-radius:26px;overflow:hidden;
+  background:linear-gradient(160deg,#1a1a2e,#33335a 60%,#4a2b4d);
+  padding:22px;box-shadow:0 26px 60px -30px rgba(26,26,46,.7);
+}
+.hero-art .shelf{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:10px;
+}
+.cover{
+  border-radius:10px;overflow:hidden;aspect-ratio:3/4;
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:8px;font-size:10px;font-weight:700;color:#fff;line-height:1.3;
+  position:relative;
+}
+.cover::after{
+  content:"";position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(0,0,0,.55),transparent 60%);
+}
+.cover span{position:relative;z-index:1}
+.c1{background:linear-gradient(150deg,#ff7a59,#c0392b)}
+.c2{background:linear-gradient(150deg,#5b8def,#28357a)}
+.c3{background:linear-gradient(150deg,#43c9a1,#1d7a63)}
+.c4{background:linear-gradient(150deg,#c98bff,#5b2a8a)}
+.c5{background:linear-gradient(150deg,#ffc93c,#d97a00)}
+.c6{background:linear-gradient(150deg,#ff6b9d,#8e2f5c)}
+.hero-art .tag{
+  position:absolute;top:14px;right:14px;z-index:2;
+  background:rgba(255,255,255,.94);color:var(--ink);
+  font-size:11px;font-weight:800;padding:4px 11px;border-radius:999px;
+}
+@media(max-width:860px){
+  .hero-grid{grid-template-columns:1fr;gap:34px}
+  .hero{padding:40px 0 44px}
+  .hero-art{max-width:420px}
+}
+
+/* ---------- section base ---------- */
+section{padding:60px 0}
+.sec-head{margin-bottom:32px}
+.sec-head .kicker{
+  font-size:12px;font-weight:800;letter-spacing:2px;
+  color:var(--accent);text-transform:uppercase;margin-bottom:8px;
+}
+.sec-head h2{font-size:clamp(22px,3vw,30px);font-weight:900;letter-spacing:-.3px}
+.sec-head p{color:var(--muted);font-size:15px;margin-top:8px;max-width:44em}
+
+/* categories */
+.cats{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;
+}
+.cat{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  padding:20px 18px;transition:.2s;
+}
+.cat:hover{border-color:var(--accent);transform:translateY(-3px);box-shadow:0 14px 30px -22px rgba(0,0,0,.5)}
+.cat .ico{
+  width:38px;height:38px;border-radius:11px;display:grid;place-items:center;margin-bottom:12px;
+  background:#fff3f0;
+}
+.cat .ico svg{width:20px;height:20px}
+.cat h3{font-size:16px;font-weight:800;margin-bottom:4px}
+.cat p{font-size:13px;color:var(--muted);line-height:1.6}
+
+/* hot list */
+.hot-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px}
+.work{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  display:flex;gap:16px;padding:16px;transition:.2s;
+}
+.work:hover{box-shadow:0 16px 36px -26px rgba(0,0,0,.55);transform:translateY(-2px)}
+.work .thumb{
+  width:78px;flex:none;aspect-ratio:3/4;border-radius:9px;
+  display:grid;place-items:center;color:#fff;font-weight:800;font-size:11px;text-align:center;padding:6px;line-height:1.3;
+}
+.work .info h3{font-size:16px;font-weight:800;margin-bottom:4px}
+.work .info .meta{font-size:12px;color:var(--accent);font-weight:700;margin-bottom:6px}
+.work .info p{font-size:13px;color:var(--muted);line-height:1.65}
+.t1{background:linear-gradient(150deg,#ff7a59,#c0392b)}
+.t2{background:linear-gradient(150deg,#5b8def,#28357a)}
+.t3{background:linear-gradient(150deg,#43c9a1,#1d7a63)}
+.t4{background:linear-gradient(150deg,#c98bff,#5b2a8a)}
+.t5{background:linear-gradient(150deg,#ffc93c,#d97a00)}
+.t6{background:linear-gradient(150deg,#ff6b9d,#8e2f5c)}
+
+/* reading guide */
+.guide{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+@media(max-width:800px){.guide{grid-template-columns:1fr}}
+.step{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  padding:26px 22px;position:relative;
+}
+.step .num{
+  font-size:13px;font-weight:900;color:#fff;background:var(--ink);
+  width:28px;height:28px;border-radius:8px;display:grid;place-items:center;margin-bottom:14px;
+}
+.step h3{font-size:17px;font-weight:800;margin-bottom:8px}
+.step p{font-size:14px;color:var(--muted);line-height:1.75}
+
+/* feature band */
+.band{
+  background:linear-gradient(150deg,#1a1a2e,#2f2f52);
+  border-radius:24px;padding:44px 38px;color:#fff;
+  display:grid;grid-template-columns:1.2fr .8fr;gap:36px;align-items:center;
+}
+.band h2{font-size:clamp(21px,2.8vw,28px);font-weight:900;margin-bottom:12px;line-height:1.35}
+.band p{font-size:14.5px;color:#c9c8d8;line-height:1.8}
+.band ul{list-style:none;display:grid;gap:10px;font-size:14px;color:#e6e5ef}
+.band li{display:flex;gap:10px;align-items:flex-start}
+.band li::before{
+  content:"";width:7px;height:7px;border-radius:50%;background:var(--accent-2);
+  margin-top:9px;flex:none;
+}
+@media(max-width:800px){.band{grid-template-columns:1fr;padding:32px 24px}}
+
+/* faq */
+.faq{display:grid;gap:14px;max-width:820px}
+details{
+  background:var(--card);border:1px solid var(--line);border-radius:14px;
+  padding:18px 22px;transition:.2s;
+}
+details[open]{border-color:#ffd0cb;box-shadow:0 12px 28px -24px rgba(0,0,0,.5)}
+summary{
+  cursor:pointer;font-weight:800;font-size:15.5px;list-style:none;
+  display:flex;justify-content:space-between;align-items:center;gap:14px;
+}
+summary::-webkit-details-marker{display:none}
+summary::after{
+  content:"+";font-size:20px;font-weight:400;color:var(--accent);flex:none;line-height:1;
+}
+details[open] summary::after{content:"–"}
+details p{font-size:14px;color:var(--muted);line-height:1.8;margin-top:12px}
+
+/* download */
+.dl{
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  padding:28px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;
+}
+.dl .txt h3{font-size:18px;font-weight:900;margin-bottom:6px}
+.dl .txt p{font-size:14px;color:var(--muted);max-width:38em}
+.btn-disabled{
+  background:#efede8;color:#9d9ba6;border:1.5px dashed #d6d2c9;
+  pointer-events:none;cursor:default;
+}
+.btn-disabled:hover{transform:none;background:#efede8}
+
+/* footer */
+footer{
+  border-top:1px solid var(--line);padding:40px 0 34px;margin-top:20px;
+  color:var(--muted);font-size:13.5px;
+}
+.foot-top{display:flex;justify-content:space-between;gap:28px;flex-wrap:wrap;margin-bottom:24px}
+.foot-brand{font-weight:800;font-size:16px;color:var(--ink);display:flex;align-items:center;gap:9px}
+.foot-brand .mark{
+  width:28px;height:28px;border-radius:8px;flex:none;
+  background:linear-gradient(140deg,var(--accent),var(--accent-2));
+  display:grid;place-items:center;
+}
+.foot-brand .mark svg{width:17px;height:17px}
+.foot-links{display:flex;gap:22px;flex-wrap:wrap}
+.foot-links a:hover{color:var(--accent)}
+.foot-bottom{border-top:1px solid var(--line);padding-top:18px;font-size:12.5px;line-height:1.8}
+</style>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="#top" aria-label="漫画在线 首页">
+      <span class="mark" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 5h11a3 3 0 0 1 3 3v11H7a3 3 0 0 1-3-3z"/>
+          <circle cx="9" cy="11" r="1" fill="#fff" stroke="none"/>
+          <path d="M8.5 14.5c2 1.4 4 1.4 6 0"/>
+        </svg>
+      </span>
+      漫画在线
+    </a>
+    <nav class="links" aria-label="主导航">
+      <a href="#hot">热门连载</a>
+      <a href="#cats">题材分类</a>
+      <a href="#how">阅读方式</a>
+      <a href="#faq">常见问题</a>
+    </nav>
+    <a class="nav-cta" href="#hot">开始看漫画</a>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow"><i></i>随时打开，随时追更</span>
+        <h1>漫画在线</h1>
+        <p class="lead">在漫画在线，热门连载与完结佳作集中在一个页面里，点开即读，不用来回切换站点。热血、恋爱、悬疑、奇幻等题材都能找到，手机和电脑上都能顺畅翻页。</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#hot">进入热门连载</a>
+          <a class="btn btn-ghost" href="#cats">按题材找漫画</a>
+        </div>
+        <div class="hero-stats">
+          <div><b>6</b>大题材分类</div>
+          <div><b>每日</b>连载更新</div>
+          <div><b>多端</b>在线阅读</div>
+        </div>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <span class="tag">本周热门</span>
+        <div class="shelf">
+          <div class="cover c1"><span>热血</span></div>
+          <div class="cover c2"><span>悬疑</span></div>
+          <div class="cover c3"><span>奇幻</span></div>
+          <div class="cover c4"><span>恋爱</span></div>
+          <div class="cover c5"><span>校园</span></div>
+          <div class="cover c6"><span>治愈</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATEGORIES -->
+  <section id="cats">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="kicker">题材分类</div>
+        <h2>按想看的类型挑漫画</h2>
+        <p>漫画在线的作品按题材划分，先定类型再挑作品，比盲目翻页更省时间。每个分类下都有正在连载和已经完结的作品可供选择。</p>
+      </div>
+      <div class="cats">
+        <div class="cat">
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="#ff5c5c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></svg></span>
+          <h3>热血战斗</h3>
+          <p>主角成长线清晰，节奏紧凑，适合一次追多话。</p>
+        </div>
+        <div class="cat">
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="#ff5c5c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.5-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 11c0 5.5-7 10-7 10z"/></svg></span>
+          <h3>恋爱日常</h3>
+          <p>关系推进细腻，单话篇幅短，适合碎片时间阅读。</p>
+        </div>
+        <div class="cat">
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="#ff5c5c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg></span>
+          <h3>悬疑推理</h3>
+          <p>线索层层铺开，适合喜欢边读边推敲的读者。</p>
+        </div>
+        <div class="cat">
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="#ff5c5c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 2.6 5.6 6.1.8-4.5 4.2 1.2 6-5.4-3-5.4 3 1.2-6L3.3 9.4l6.1-.8z"/></svg></span>
+          <h3>奇幻世界</h3>
+          <p>设定完整，画面信息量大，适合细看背景与分镜。</p>
+        </div>
+        <div class="cat">
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="#ff5c5c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8h18M6 8V6h12v2M5 8v11h14V8"/></svg></span>
+          <h3>校园青春</h3>
+          <p>场景贴近日常，情节轻快，适合放松时阅读。</p>
+        </div>
+        <div class="cat">
+          <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="#ff5c5c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v16M4 12h16"/></svg></span>
+          <h3>治愈生活</h3>
+          <p>情绪平稳，单话自成段落，随时停下也不影响理解。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOT -->
+  <section id="hot">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="kicker">热门连载</div>
+        <h2>本期推荐在更作品</h2>
+        <p>以下为漫画在线当前推荐的在更与完结作品，题材各异，可按更新节奏挑选。连载作品的更新情况以作品页标注为准。</p>
+      </div>
+      <div class="hot-grid">
+        <article class="work">
+          <div class="thumb t1">热血<br>战斗</div>
+          <div class="info">
+            <h3>长夜行</h3>
+            <div class="meta">连载中 · 热血</div>
+            <p>少年踏上旅途，靠一场场对决累积实力。打斗分镜干净，升级节奏明快。</p>
+          </div>
+        </article>
+        <article class="work">
+          <div class="thumb t2">悬疑<br>推理</div>
+          <div class="info">
+            <h3>雾中来信</h3>
+            <div class="meta">连载中 · 悬疑</div>
+            <p>一封没有署名的信牵出旧案，每一话都留下新的疑点，适合慢慢推敲。</p>
+          </div>
+        </article>
+        <article class="work">
+          <div class="thumb t3">奇幻<br>冒险</div>
+          <div class="info">
+            <h3>浮岛纪事</h3>
+            <div class="meta">连载中 · 奇幻</div>
+            <p>漂浮岛屿构成完整世界观，背景细节丰富，值得逐格阅读。</p>
+          </div>
+        </article>
+        <article class="work">
+          <div class="thumb t4">恋爱<br>日常</div>
+          <div class="info">
+            <h3>夏末便当</h3>
+            <div class="meta">已完结 · 恋爱</div>
+            <p>围绕一间小食堂展开的日常恋爱，单话篇幅短，适合碎片时间。</p>
+          </div>
+        </article>
+        <article class="work">
+          <div class="thumb t5">校园<br>青春</div>
+          <div class="info">
+            <h3>第三排靠窗</h3>
+            <div class="meta">连载中 · 校园</div>
+            <p>教室里的琐碎日常被写出趣味，情节轻快，阅读压力低。</p>
+          </div>
+        </article>
+        <article class="work">
+          <div class="thumb t6">治愈<br>生活</div>
+          <div class="info">
+            <h3>猫与我的一周</h3>
+            <div class="meta">已完结 · 治愈</div>
+            <p>短篇合集，每话自成段落，随时翻开随时读完。</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW -->
+  <section id="how">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="kicker">阅读方式</div>
+        <h2>三步开始在线阅读</h2>
+        <p>漫画在线的阅读流程尽量简化：选作品、翻页面、记住进度。不需要额外学习操作。</p>
+      </div>
+      <div class="guide">
+        <div class="step">
+          <div class="num">1</div>
+          <h3>选题材或直接挑作品</h3>
+          <p>从分类入口进入，或在热门连载中按标题与简介选择。简介中会标注是否连载、主打题材，方便快速判断是否符合口味。</p>
+        </div>
+        <div class="step">
+          <div class="num">2</div>
+          <h3>在作品页逐话阅读</h3>
+          <p>作品页按话数排列章节，可从第一话开始，也可直接跳到最新一话。阅读页面以上下翻页为主，手机端单手即可操作。</p>
+        </div>
+        <div class="step">
+          <div class="num">3</div>
+          <h3>记下进度，按更新追更</h3>
+          <p>看到一半可先退出，下次从评论与更新标注判断是否追到最新。连载作品建议隔几天回来看一次更新。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BAND -->
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="band">
+        <div>
+          <h2>为什么把漫画在线当作日常阅读入口</h2>
+          <p>阅读漫画最怕两件事：找不到连贯的章节、页面加载打断节奏。漫画在线把作品与章节集中管理，阅读页去掉多余元素，让翻页成为唯一动作。对通勤、睡前这类短时段阅读尤其合适。</p>
+        </div>
+        <ul>
+          <li>作品与章节目录结构清晰，不必反复搜索</li>
+          <li>题材分类齐全，按兴趣直接进入</li>
+          <li>阅读页以内容为主体，减少干扰</li>
+          <li>手机与电脑均可打开，进度随时接续</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="kicker">常见问题</div>
+        <h2>读者最常问的几件事</h2>
+      </div>
+      <div class="faq">
+        <details>
+          <summary>漫画在线的作品需要付费吗？</summary>
+          <p>页面当前展示的作品均可直接打开阅读。若后续出现需要单独说明的作品，会在作品页标注具体条件，请以页面实际提示为准。</p>
+        </details>
+        <details>
+          <summary>连载作品多久更新一次？</summary>
+          <p>不同作品更新节奏不同，作品页会标注连载状态与最近更新情况。想看追更，建议收藏作品页，隔几天回来看最新章节。</p>
+        </details>
+        <details>
+          <summary>手机上阅读会不会排版错乱？</summary>
+          <p>阅读页按移动端优先设计，正文与分镜随屏幕宽度自适应。若遇到显示异常，可切换横竖屏或刷新页面重新加载。</p>
+        </details>
+        <details>
+          <summary>可以按题材一次浏览全部作品吗？</summary>
+          <p>可以。页面提供热血、恋爱、悬疑、奇幻、校园、治愈等分类入口，进入分类后可浏览该题材下的作品列表，再逐部查看简介。</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- DOWNLOAD / ACTION -->
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="dl">
+        <div class="txt">
+          <h3>把漫画在线放到桌面，打开更快</h3>
+          <p>下载桌面入口后，无需每次输入网址即可进入漫画在线，适合每天固定追更的读者。当前版本入口正在整理中。</p>
+        </div>
+        <a class="btn btn-disabled" href="#" data-download-placeholder="true" aria-disabled="true" tabindex="-1">下载</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <span class="mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 5h11a3 3 0 0 1 3 3v11H7a3 3 0 0 1-3-3z"/>
+            <circle cx="9" cy="11" r="1" fill="#fff" stroke="none"/>
+          </svg>
+        </span>
+        漫画在线
+      </div>
+      <div class="foot-links">
+        <a href="#hot">热门连载</a>
+        <a href="#cats">题材分类</a>
+        <a href="#how">阅读方式</a>
+        <a href="#faq">常见问题</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      漫画在线是一个以在线阅读为核心的漫画页面，汇集热血、恋爱、悬疑、奇幻、校园与治愈等题材作品，支持手机与电脑浏览。作品连载状态与更新情况以作品页标注为准。
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
